@@ -1,6 +1,8 @@
 import requests
 import json
 from wit import data_helper
+import calendar
+import time
 
 # Wit.ai's API for training the app
 train_api = "https://api.wit.ai/samples?v=20170307"
@@ -11,11 +13,18 @@ train_headers = {
     "Content-Type": "application/json"
 }
 
+# Timestamp
+ts = calendar.timegm(time.gmtime())
+log_name = 'log_{}.txt'.format(ts)
+
+# Document Length
+doc_length = 256
+
 # Batch Size
-batch = 1
+batch = 10
 
 # Read Data
-data = data_helper.load_tab_files('Training_data.txt')
+data = data_helper.load_tab_files(data_file='Training_data.txt', document_length=doc_length)
 
 train_payload = []
 for idx, entry in enumerate(data):
@@ -32,8 +41,8 @@ for idx, entry in enumerate(data):
     train_payload.append(temp_entry)
 
     # Sending payload in batch
-    # if (idx+1) % batch == 0:
-    if idx < 30 and idx > 19:
+    if (idx+1) % batch == 0 or idx == len(data):
+    # if idx < 30 and idx > 19:
         # Jsonify Payload
         train_payload_json = json.dumps(train_payload)
 
@@ -45,7 +54,7 @@ for idx, entry in enumerate(data):
 
         # Recording Error
         if r.status_code != 200:
-            file = open("log.txt","a")
+            file = open(log_name,"a")
             file.write("Data no.{} - no.{}".format(idx-batch+2,idx+1))
             file.write("\n")
             file.write(r.text)

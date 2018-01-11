@@ -22,12 +22,13 @@ def clean_str(string):
     return string.strip().lower()
 
 
-def load_tab_files(data_file):
+def load_tab_files(data_file,document_length):
 
     # Load data from files
     raw_data = list(open(data_file, "r", encoding="utf8").readlines())
     raw_data = [s.split("\t") for s in raw_data]
 
-    data = [[clean_str(s[0]), s[1].strip('\n')] for s in raw_data]
+    data = [[clean_str(s[0]), s[1].strip('\n')] for s in raw_data] # String Cleaning
+    data = [[s[0][:document_length], s[1]] for s in data]
 
     return data

@@ -2,3 +2,5 @@
 ex_api_env
 .idea
 *.pyc
+
+wit/prediction.csv
