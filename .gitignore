@@ -4,3 +4,6 @@ ex_api_env
 *.pyc
 
 wit/prediction.csv
+
+wit/Test_data.txt
+wit/Training_data.txt
