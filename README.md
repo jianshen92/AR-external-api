@@ -18,3 +18,6 @@ Run ``training.py`` to perform training. Different app is distinguished by an ac
 
 Run ``eval.py`` to perform evaluation. It will generate a ``prediction.csv`` file with predicted labels. 
 #### PS : Evaluation speed is capped by 1 message per API call per second.
+
+### Comparison of performance versus Wooppy's Engine 
+![alt text](witvswooppy.png "Wooppy's CNN vs Wit.ai performance")
