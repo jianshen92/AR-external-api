@@ -21,3 +21,4 @@ Run ``eval.py`` to perform evaluation. It will generate a ``prediction.csv`` fil
 
 ### Comparison of performance versus Wooppy's Engine 
 ![alt text](witvswooppy.png "Wooppy's CNN vs Wit.ai performance")
+Hooray!! We won marginally!
